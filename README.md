@@ -1,18 +1,8 @@
 openafs-smartos-pkgsrc
 ```sh
-pkgin -f update
-pkgin -y install gcc47 git-base pkgdiff
-mkdir -p /content/{distfiles,packages}
-cd /content
-git clone git://github.com/joyent/pkgsrc.git
-cd pkgsrc
-git checkout joyent/release/trunk
-git submodule init
-git submodule update
-
-cat <<EOF >> /opt/local/etc/mk.conf
-
-ALLOW_VULNERABLE_PACKAGES=  yes
+cat <<EOF >> /opt/local/etc/pkg_install.conf
+GPG=/usr/bin/gpg
+GPG_SIGN_AS=C8D06291DE2552D7C53F925F33DF5098C7FBCD6F
 EOF
 
 grep 'http://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositories.conf \
@@ -21,6 +11,7 @@ grep 'http://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositor
     >> /opt/local/etc/mk.conf
 
 cat <<EOF >> /opt/local/etc/mk.conf
+ALLOW_VULNERABLE_PACKAGES=  yes
 DEPENDS_TARGET=             bin-install
 DISTDIR=                    /content/distfiles
 FETCH_USING=                curl
@@ -32,6 +23,21 @@ SKIP_LICENSE_CHECK=         yes
 WRKOBJDIR=                  /var/tmp/pkgsrc-build
 EOF
 
+gpg --import admin.signing.gpg-key
+shred --remove admin.signing.gpg-key
+
+pkgin -f update
+pkgin -y install gcc47 git-base pkgdiff
+mkdir -p /content/{distfiles,packages}
+cd /content
+git clone git://github.com/joyent/pkgsrc.git
+cd pkgsrc
+git checkout joyent/release/trunk
+git submodule init
+git submodule update
 cd filesystems
 git clone git://github.com/richard-burhans/openafs-smartos-pkgsrc.git openafs-smartos
+cd openafs-smartos
+bmake makedistinfo
+bmake package
 ```
