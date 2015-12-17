@@ -1,5 +1,5 @@
 openafs-smartos-pkgsrc
-
+```sh
 pkgin -f update
 pkgin -y install gcc47 git-base pkgdiff
 mkdir -p /content/{distfiles,packages}
@@ -34,3 +34,4 @@ EOF
 
 cd filesystems
 git clone git://github.com/richard-burhans/openafs-smartos-pkgsrc.git openafs-smartos
+```
