@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- src/libuafs/MakefileProto.SOLARIS.in.orig	2015-10-28 13:06:44.000000000 +0000
++++ src/libuafs/MakefileProto.SOLARIS.in
+@@ -18,7 +18,7 @@ CFLAGS=-I. -I.. -I${TOP_OBJDIR}/src/conf
+ OPTF=-O
+ WEBOPTS = -KPIC -I../nsapi -DNETSCAPE_NSAPI -DSOLARIS -DNET_SSL -DXP_UNIX -DMCC_HTTPD
+ 
+-TEST_CFLAGS=-mt -DAFS_PTHREAD_ENV -Dsolaris -DAFS_SUN5_ENV $(XCFLAGS)
++TEST_CFLAGS=@MT_CFLAGS@ -Dsolaris -DAFS_SUN5_ENV $(XCFLAGS)
+ TEST_LDFLAGS=
+ TEST_LIBS=-lsocket -lnsl -lthread -lm -ldl
+ 

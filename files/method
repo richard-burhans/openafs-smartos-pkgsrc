@@ -1,0 +1,35 @@
+#!@SMF_METHOD_SHELL@
+#
+# $NetBSD:$
+#
+# Init script for bosserver
+#
+
+. /lib/svc/share/smf_include.sh
+
+prefix=@PREFIX@
+exec_prefix=@PREFIX@
+bindir=${exec_prefix}/bin
+sbindir=${exec_prefix}/sbin
+
+case "$1" in
+start)
+        printf "Starting OpenAFS server:"
+        $sbindir/bosserver
+        echo ""
+        ;;
+stop)
+        if [ -n "`pgrep bosserver`" ] ; then
+            printf "Stopping OpenAFS server:"
+            $bindir/bos shutdown localhost -localauth -wait
+            pkill bosserver
+            echo ""
+        fi
+        ;;
+restart)
+        $0 stop
+        sleep 3
+        $0 start
+        ;;
+esac
+exit 0
