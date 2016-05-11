@@ -8,9 +8,9 @@ EOF
 grep 'http://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositories.conf \
     | sed -e 's/All$//' \
     | awk '{print "BINPKG_SITES=              ", $1}' \
-    >> /opt/local/etc/mk.conf
+    >> /opt/local/etc/mk.conf.local
 
-cat <<EOF >> /opt/local/etc/mk.conf
+cat <<EOF >> /opt/local/etc/mk.conf.local
 ALLOW_VULNERABLE_PACKAGES=  yes
 DEPENDS_TARGET=             bin-install
 DISTDIR=                    /content/distfiles
