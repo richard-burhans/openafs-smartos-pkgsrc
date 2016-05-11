@@ -1,11 +1,11 @@
 # $NetBSD$
 
-DISTNAME=               openafs-1.6.15-src
+DISTNAME=               openafs-1.6.18-src
 PKGNAME=                ${DISTNAME:C/-src//}
-DISTFILES=              ${DEFAULT_DISTFILES} openafs-1.6.15-doc.tar.bz2
+DISTFILES=              ${DEFAULT_DISTFILES} openafs-1.6.18-doc.tar.bz2
 
 CATEGORIES=             filesystems net sysutils
-MASTER_SITES=           http://openafs.org/dl/openafs/1.6.15/
+MASTER_SITES=           http://openafs.org/dl/openafs/1.6.18/
 EXTRACT_SUFX=           .tar.bz2
 
 MAINTAINER=             burhans@bx.psu.edu
@@ -13,7 +13,7 @@ HOMEPAGE=               http://www.openafs.org/
 COMMENT=                File system for sharing, scalability and transparent data migration
 LICENSE=                ibm-public-license-1.0
 
-WRKSRC=                 ${WRKDIR}/openafs-1.6.15
+WRKSRC=                 ${WRKDIR}/openafs-1.6.18
 MAKE_JOBS_SAFE=         no
 
 AUTOCONF_REQD=          2.60
