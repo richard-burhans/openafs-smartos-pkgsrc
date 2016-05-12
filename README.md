@@ -2,7 +2,7 @@ openafs-smartos-pkgsrc
 ```sh
 cat <<EOF >> /opt/local/etc/pkg_install.conf
 GPG=/usr/bin/gpg
-GPG_SIGN_AS=C6C8BBD9A48E87A002711326139560F970B189EB
+GPG_SIGN_AS=43B99F40
 EOF
 
 # check end of /opt/local/etc/mk.conf
