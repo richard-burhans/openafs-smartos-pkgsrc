@@ -44,4 +44,7 @@ git clone git://github.com/richard-burhans/openafs-smartos-pkgsrc.git openafs-sm
 cd openafs-smartos
 bmake makedistinfo
 bmake package
+
+gpg2 --no-default-keyring --keyring /opt/local/etc/gnupg/pkgsrc.gpg --keyserver pgp.mit.edu --recv-keys D279E65CFC8EDB80B88E4BB136A3F687E36BC00B
+pkg_info -X /content/packages/All/openafs-1.6.18.tgz | gzip -9 > pkg_summary.gz
 ```
