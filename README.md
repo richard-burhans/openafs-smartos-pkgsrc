@@ -5,6 +5,10 @@ GPG=/usr/bin/gpg
 GPG_SIGN_AS=C8D06291DE2552D7C53F925F33DF5098C7FBCD6F
 EOF
 
+# check end of /opt/local/etc/mk.conf
+# should be .sinclude "/opt/local/etc/mk.conf.local"
+# or        .sinclude </opt/local/etc/mk.conf.local>
+
 grep 'http://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositories.conf \
     | sed -e 's/All$//' \
     | awk '{print "BINPKG_SITES=              ", $1}' \
