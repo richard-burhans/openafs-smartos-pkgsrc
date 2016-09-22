@@ -27,11 +27,14 @@ SKIP_LICENSE_CHECK=         yes
 WRKOBJDIR=                  /var/tmp/pkgsrc-build
 EOF
 
+pkgin -f update
+pkgin -y install gcc47 git-base pkgdiff gnupg2
+
+gpg2 --no-default-keyring --keyring /opt/local/etc/gnupg/pkgsrc.gpg --keyserver pgp.mit.edu --recv-keys D279E65CFC8EDB80B88E4BB136A3F687E36BC00B
+
 gpg --import admin.signing.gpg-key
 shred --remove admin.signing.gpg-key
 
-pkgin -f update
-pkgin -y install gcc47 git-base pkgdiff
 mkdir -p /content/{distfiles,packages}
 cd /content
 git clone git://github.com/joyent/pkgsrc.git
@@ -45,6 +48,5 @@ cd openafs-smartos
 bmake makedistinfo
 bmake package
 
-gpg2 --no-default-keyring --keyring /opt/local/etc/gnupg/pkgsrc.gpg --keyserver pgp.mit.edu --recv-keys D279E65CFC8EDB80B88E4BB136A3F687E36BC00B
-pkg_info -X /content/packages/All/openafs-1.6.18.tgz | gzip -9 > pkg_summary.gz
-```
+pkg_info -X /content/packages/All/openafs-1.6.18.3.tgz | gzip -9 > pkg_summary.gz
+
