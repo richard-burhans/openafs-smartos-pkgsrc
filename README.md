@@ -9,7 +9,7 @@ EOF
 # should be .sinclude "/opt/local/etc/mk.conf.local"
 # or        .sinclude </opt/local/etc/mk.conf.local>
 
-grep 'http://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositories.conf \
+grep 'https://pkgsrc.joyent.com/packages/SmartOS/' /opt/local/etc/pkgin/repositories.conf \
     | sed -e 's/All$//' \
     | awk '{print "BINPKG_SITES=              ", $1}' \
     >> /opt/local/etc/mk.conf.local
@@ -28,7 +28,7 @@ WRKOBJDIR=                  /var/tmp/pkgsrc-build
 EOF
 
 pkgin -f update
-pkgin -y install gcc47 git-base pkgdiff gnupg2
+pkgin -y install gcc49 git-base pkgdiff gnupg2
 
 gpg2 --no-default-keyring --keyring /opt/local/etc/gnupg/pkgsrc.gpg --keyserver pgp.mit.edu --recv-keys D279E65CFC8EDB80B88E4BB136A3F687E36BC00B
 
